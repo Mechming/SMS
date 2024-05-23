@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/modern_listview.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -8,32 +10,34 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Screen'),
+        backgroundColor: Colors.green,
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: () {},
+          ),
+        ],
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Item ${index + 1}'),
-            onTap: () {
-              // Handle your item tap here
-            },
-          );
-        },
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        label: Text('Add Item'),
+        icon: Icon(Icons.add),
       ),
+      body: modernListView(),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'Shopping',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.settings_outlined),
+            label: 'Settings',
           ),
         ],
       ),
