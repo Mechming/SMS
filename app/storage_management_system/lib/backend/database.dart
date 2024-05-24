@@ -32,13 +32,42 @@ Future<void> getStorage() async {
       .catchError((error) => print("Failed to get storage: $error"));
 }
 
+Future<void> updateItem(Item item) async {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  CollectionReference storage = FirebaseFirestore.instance.collection('storage');
+  QuerySnapshot querySnapshot = await storage
+      .where('id', isEqualTo: item.id)
+      .get();
+  if (querySnapshot.docs.length != 1) {
+    throw Exception("0x02 Multiple or no matching ID found");
+  }
 
+  DocumentReference documentRef = querySnapshot.docs.first.reference;
+
+  await db.runTransaction((transaction) async {
+    DocumentSnapshot snapshot = await transaction.get(documentRef);
+
+    if (!snapshot.exists) {
+      throw Exception("0x03 no matching document found for ID (this is not possible)");
+    }
+
+    transaction.update(documentRef, {
+      'id': item.id,
+      'name': item.title,
+      'amount': item.count,
+      'goal_amount': item.goalAmount,
+    });
+  });
+}
 
 
 void sebisDBTesting() {
   if (true) {
-    Item testing_item = Item(id: 1, title: "Burger", count: 2, goalAmount: 4);
+    Item testing_item = Item(id: 10, title: "Burger", count: 2, goalAmount: 4);
     addItem(testing_item);
-    //getStorage();
+    getStorage();
+    testing_item.title = "Hambuger";
+    updateItem(testing_item);
+    getStorage();
   }
 }
