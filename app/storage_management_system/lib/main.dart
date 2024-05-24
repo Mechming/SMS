@@ -36,6 +36,17 @@ void main() async {
         BlocProvider<ItemsCubit>(
           create: (context) => ItemsCubit(),
         ),
+        BlocProvider<CounterCubit1>(
+          key: Key('counter1'),
+          create: (context) => CounterCubit1(0),
+        ),
+        BlocProvider<CounterCubit2>(
+          key: Key('counter2'),
+          create: (context) => CounterCubit2(0),
+        ),
+        BlocProvider<TextFieldCubit>(
+          create: (context) => TextFieldCubit(),
+        )
       ],
       child: const MyApp(),
     ),

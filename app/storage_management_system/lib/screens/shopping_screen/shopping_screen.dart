@@ -36,21 +36,28 @@ class ShoppingScreen extends StatelessWidget {
         ),
         itemBuilder: (ctx, i) => Card(
           elevation: 4,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  shoppingList[i],
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Quantity: 1',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ],
+          child: SizedBox(
+            height: 100,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      shoppingList[i],
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Expanded(
+                    child: Text(
+                      'Quantity: 1',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

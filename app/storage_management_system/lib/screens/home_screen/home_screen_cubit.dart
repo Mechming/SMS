@@ -66,3 +66,11 @@ class ModalBottomSheetCubit extends Cubit<ModalBottomSheetState> {
         itemName: itemName, counter1: counter1, counter2: counter2));
   }
 }
+
+class TextFieldCubit extends Cubit<String> {
+  TextFieldCubit() : super('');
+
+  void setText(String text) {
+    emit(text);
+  }
+}

@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
       return Scaffold(
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () => showModalBottomSheet(
+            isScrollControlled: true,
             context: context,
             builder: (ctx) => MultiBlocProvider(
               providers: [
@@ -30,11 +31,12 @@ class HomeScreen extends StatelessWidget {
                   create: (context) => ModalBottomSheetCubit(),
                 ),
               ],
-              child: AddItemHome(),
+              child: Container(child: AddItemHome(), height: 600),
             ),
           ).then((value) {
             context.read<CounterCubit1>().setCount(0);
             context.read<CounterCubit2>().setCount(0);
+            context.read<TextFieldCubit>().setText('');
           }),
           label: Text('Add Item'),
           icon: Icon(Icons.add),
