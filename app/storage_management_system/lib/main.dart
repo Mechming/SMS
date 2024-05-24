@@ -1,17 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:storage_management_system/screens/backend_test/db_connect.dart';
+import 'package:storage_management_system/backend/database.dart';
+import 'package:storage_management_system/screens/home_screen/Items_cubit.dart';
 import 'package:storage_management_system/screens/home_screen/home_screen.dart';
 import 'package:storage_management_system/screens/home_screen/home_screen_cubit.dart';
 import 'package:storage_management_system/screens/setting/setting_screen.dart';
 import 'package:storage_management_system/screens/shopping_screen/shopping_cubit.dart';
 import 'package:storage_management_system/screens/shopping_screen/shopping_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-
-import 'package:storage_management_system/backend/database.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
