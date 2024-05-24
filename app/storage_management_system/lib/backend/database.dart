@@ -5,7 +5,7 @@ import 'package:storage_management_system/models/item.dart';
 Future<void> addItem(Item item) async {
   CollectionReference storage = FirebaseFirestore.instance.collection('storage');
   final query = storage.where("id", isEqualTo: item.id);
-  print(query)
+  print(query);
 
   return storage.add({
     'name': "hello",
