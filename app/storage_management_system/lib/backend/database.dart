@@ -4,15 +4,21 @@ import 'package:storage_management_system/models/item.dart';
 
 Future<void> addItem(Item item) async {
   CollectionReference storage = FirebaseFirestore.instance.collection('storage');
-  final query = storage.where("id", isEqualTo: item.id);
-  print(query);
 
-  return storage.add({
-    'name': "hello",
-    'amount': 1,
-  })
-      .then((value) => print("Added item succesfully"))
-      .catchError((error) => print("Item not added: $error"));
+  storage.where("id", isEqualTo: item.id).get().then(
+      (snapshot) {
+        if (snapshot.size != 0) {
+          throw Exception("0x01 Item ID already in storage");
+        } else {
+          return storage.add({
+            'id': item.id,
+            'name': item.title,
+            'amount': item.count,
+            'goal_amount': item.goalAmount,
+          });
+        }
+      }
+  );
 }
 
 Future<void> getStorage() async {
@@ -28,9 +34,11 @@ Future<void> getStorage() async {
 
 
 
+
 void sebisDBTesting() {
   if (true) {
-    //addItem("test Item", 1);
-    getStorage();
+    Item testing_item = Item(id: 1, title: "Burger", count: 2, goalAmount: 4);
+    addItem(testing_item);
+    //getStorage();
   }
 }

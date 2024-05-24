@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1032262691511",
+    "project_id": "sms-backend-a9c19",
+    "storage_bucket": "sms-backend-a9c19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032262691511:android:9c9bca4dda315d4fd8bb32",
+        "android_client_info": {
+          "package_name": "com.hackaburg.sms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0ME01jubRYXfBoOg88kAWQZKM2vU9xQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
