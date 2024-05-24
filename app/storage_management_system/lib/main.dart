@@ -20,9 +20,8 @@ void main() async{
         projectId: 'sms-backend-a9c19')
   );
 
-  //addItem("test Item", 1);
-  getStorage();
-  
+  sebisDBTesting();
+
   runApp(
     MultiBlocProvider(
       providers: [
