@@ -11,11 +11,8 @@ def upload():
     pass
 
 
-
 img = cv2.imread('bill1.jpg')
 
-# Adding custom options
-custom_config = r'--oem 3 --psm 6'
-pytesseract.image_to_string(img, config=custom_config)
-
+text = str(pytesseract.image_to_string(img, lang="deu", config='--oem 1 --psm 6'))
+print(text)
 
