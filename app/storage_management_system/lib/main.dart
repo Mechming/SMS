@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:storage_management_system/screens/home_screen/home_screen.dart';
@@ -7,7 +6,21 @@ import 'package:storage_management_system/screens/setting/setting_screen.dart';
 import 'package:storage_management_system/screens/shopping_screen/shopping_cubit.dart';
 import 'package:storage_management_system/screens/shopping_screen/shopping_screen.dart';
 
-void main() {
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+import 'package:storage_management_system/screens/backend_test/db_connect.dart';
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(apiKey: 'BDUEIljLKDGbTKGGcr1mIWHni6-xnEkomSmPwKYfRcE6HxGrtOPVRlEV5JfSJ6-cQkd6zcY52MuXbJYYsYiUPJE',
+        appId: '1:1032262691511:android:9c9bca4dda315d4fd8bb32',
+        messagingSenderId: '1032262691511',
+        projectId: 'sms-backend-a9c19')
+  );
+
+  addItem("test Item", 1);
   runApp(
     MultiBlocProvider(
       providers: [
