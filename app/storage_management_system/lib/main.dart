@@ -1,26 +1,27 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:storage_management_system/backend/database.dart';
+import 'package:storage_management_system/screens/home_screen/Items_cubit.dart';
 import 'package:storage_management_system/screens/home_screen/home_screen.dart';
 import 'package:storage_management_system/screens/home_screen/home_screen_cubit.dart';
 import 'package:storage_management_system/screens/setting/setting_screen.dart';
 import 'package:storage_management_system/screens/shopping_screen/shopping_cubit.dart';
 import 'package:storage_management_system/screens/shopping_screen/shopping_screen.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-
-import 'package:storage_management_system/backend/database.dart';
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: const FirebaseOptions(apiKey: 'BDUEIljLKDGbTKGGcr1mIWHni6-xnEkomSmPwKYfRcE6HxGrtOPVRlEV5JfSJ6-cQkd6zcY52MuXbJYYsYiUPJE',
-        appId: '1:1032262691511:android:9c9bca4dda315d4fd8bb32',
-        messagingSenderId: '1032262691511',
-        projectId: 'sms-backend-a9c19')
-  );
+      options: const FirebaseOptions(
+          apiKey:
+              'BDUEIljLKDGbTKGGcr1mIWHni6-xnEkomSmPwKYfRcE6HxGrtOPVRlEV5JfSJ6-cQkd6zcY52MuXbJYYsYiUPJE',
+          appId: '1:1032262691511:android:9c9bca4dda315d4fd8bb32',
+          messagingSenderId: '1032262691511',
+          projectId: 'sms-backend-a9c19'));
 
   sebisDBTesting();
+  //addItem("test Item", 1);
+  getStorage();
 
   runApp(
     MultiBlocProvider(
@@ -30,6 +31,12 @@ void main() async{
         ),
         BlocProvider<ShoppingCubit>(
           create: (context) => ShoppingCubit(),
+        ),
+        BlocProvider<ModalBottomSheetCubit>(
+          create: (context) => ModalBottomSheetCubit(),
+        ),
+        BlocProvider<ItemsCubit>(
+          create: (context) => ItemsCubit(),
         ),
       ],
       child: const MyApp(),

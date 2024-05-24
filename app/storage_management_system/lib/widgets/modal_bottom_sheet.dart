@@ -14,10 +14,7 @@ final Widget addItemBottomSheet = Container(
       SizedBox(height: 20),
       ElevatedButton(
         child: Text('Add Item'),
-        onPressed: () {
-          // context.read<ShoppingCubit>().addItem(controller.text);
-          // Navigator.of(context).pop();
-        },
+        onPressed: () {},
       ),
     ],
   ),
