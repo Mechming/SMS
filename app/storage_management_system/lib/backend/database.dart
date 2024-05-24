@@ -38,8 +38,9 @@ Future<void> updateItem(Item item) async {
   QuerySnapshot querySnapshot = await storage
       .where('id', isEqualTo: item.id)
       .get();
-  if (querySnapshot.docs.length != 1) {
-    throw Exception("0x02 Multiple or no matching ID found");
+  // TODO: This is not working
+  if (querySnapshot.docs.isEmpty) {
+    throw Exception("0x02 No matching ID found");
   }
 
   DocumentReference documentRef = querySnapshot.docs.first.reference;
@@ -63,7 +64,7 @@ Future<void> updateItem(Item item) async {
 
 void sebisDBTesting() {
   if (true) {
-    Item testing_item = Item(id: 10, title: "Burger", count: 2, goalAmount: 4);
+    Item testing_item = Item(id: 18, title: "Burger", count: 2, goalAmount: 4);
     addItem(testing_item);
     getStorage();
     testing_item.title = "Hambuger";
