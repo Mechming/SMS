@@ -6,6 +6,6 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(child: Text('Hier könnten ihre Einstellungen stehen.')));
+        body: Center(child: Text('Hier könnten sie Ihre items scannen')));
   }
 }
