@@ -9,7 +9,7 @@ import 'package:storage_management_system/screens/shopping_screen/shopping_scree
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'package:storage_management_system/screens/backend_test/db_connect.dart';
+import 'package:storage_management_system/backend/database.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,9 @@ void main() async{
         projectId: 'sms-backend-a9c19')
   );
 
-  addItem("test Item", 1);
+  //addItem("test Item", 1);
+  getStorage();
+  
   runApp(
     MultiBlocProvider(
       providers: [
