@@ -15,13 +15,70 @@ Widget modernListView() {
               borderRadius: BorderRadius.circular(15),
             ),
             child: ListTile(
-                leading: CircleAvatar(
-                  child: Text('${index + 1}'),
-                ),
-                title: Text(items[index].itemName),
-                subtitle: Text(
-                    'Counter 1: ${items[index].counter1}, Counter 2: ${items[index].counter2}'),
-                onTap: () {}),
+              minTileHeight: 100,
+              title: Column(
+                children: [
+                  Center(
+                      child: Text(
+                    items[index].itemName,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w500),
+                  )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                ],
+              ),
+              subtitle: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Text('Target Value: '),
+                  IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: () {
+                      if (items[index].counter1 > 0) {
+                        context.read<ItemsCubit>().updateItem(
+                            index,
+                            items[index]
+                                .copyWith(counter1: items[index].counter1 - 1));
+                      }
+                    },
+                  ),
+                  Text('${items[index].counter1}'),
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () {
+                      context.read<ItemsCubit>().updateItem(
+                          index,
+                          items[index]
+                              .copyWith(counter1: items[index].counter1 + 1));
+                    },
+                  ),
+                  const Text('available: '),
+                  IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: () {
+                      if (items[index].counter2 > 0) {
+                        context.read<ItemsCubit>().updateItem(
+                            index,
+                            items[index]
+                                .copyWith(counter2: items[index].counter2 - 1));
+                      }
+                    },
+                  ),
+                  Text('${items[index].counter2}'),
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () {
+                      context.read<ItemsCubit>().updateItem(
+                          index,
+                          items[index]
+                              .copyWith(counter2: items[index].counter2 + 1));
+                    },
+                  ),
+                ],
+              ),
+            ),
           );
         },
       );

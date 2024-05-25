@@ -9,4 +9,10 @@ class ItemsCubit extends Cubit<List<ModalBottomSheetState>> {
     updatedList.add(item);
     emit(updatedList);
   }
+
+  void updateItem(int index, ModalBottomSheetState updatedItem) {
+    final items = List<ModalBottomSheetState>.from(state);
+    items[index] = updatedItem;
+    emit(items);
+  }
 }

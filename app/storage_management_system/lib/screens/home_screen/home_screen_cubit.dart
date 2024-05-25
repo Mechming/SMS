@@ -53,6 +53,14 @@ class ModalBottomSheetState {
   final int counter1;
   final int counter2;
 
+  ModalBottomSheetState copyWith(
+      {String? itemName, int? counter1, int? counter2}) {
+    return ModalBottomSheetState(
+        itemName: itemName ?? this.itemName,
+        counter1: counter1 ?? this.counter1,
+        counter2: counter2 ?? this.counter2);
+  }
+
   ModalBottomSheetState(
       {required this.itemName, required this.counter1, required this.counter2});
 }
