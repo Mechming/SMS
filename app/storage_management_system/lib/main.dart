@@ -74,14 +74,6 @@ class MyApp extends StatelessWidget {
                           : const Text('Home'),
               backgroundColor: Colors.green,
               centerTitle: true,
-              actions: [
-                state is HomePageState
-                    ? IconButton(
-                        icon: const Icon(Icons.edit),
-                        onPressed: () {},
-                      )
-                    : Container(),
-              ],
             ),
             body: state is HomePageState
                 ? const HomeScreen()
@@ -101,8 +93,8 @@ class MyApp extends StatelessWidget {
                   label: 'Shopping',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.settings_outlined),
-                  label: 'Settings',
+                  icon: Icon(Icons.barcode_reader),
+                  label: 'Scan/Add',
                 ),
               ],
               onTap: (index) {
