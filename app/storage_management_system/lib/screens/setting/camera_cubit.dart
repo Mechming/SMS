@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:camera/camera.dart';
 
@@ -22,7 +24,8 @@ class CameraCubit extends Cubit<CameraState> {
   Future<void> takePicture() async {
     if (state is CameraReady) {
       final image = await (state as CameraReady).controller.takePicture();
-      emit(PictureTaken(image));
+      List<int> imageBytes = await File(image.path).readAsBytes();
+      emit(PictureTaken(image, imageBytes));
     }
   }
 
@@ -50,6 +53,7 @@ class CameraReady extends CameraState {
 
 class PictureTaken extends CameraState {
   final XFile picture;
+  final List<int> imageBytes;
 
-  PictureTaken(this.picture);
+  PictureTaken(this.picture, this.imageBytes);
 }
