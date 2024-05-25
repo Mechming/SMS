@@ -4,7 +4,7 @@ import json
 
 product_mapping = {
     "Joghurt": ["Alpro", "Jog", "Joghurt"],
-    "Nudeln": ["Deliz.Pas", "Pasta", "Deliz", "Pas", "Simply"],
+    "Nudeln": ["Deliz.Pas", "Pasta", "Deliz", "Simply"],
     "Bohnen": ["Kidney-Bohnen", "Kidney", "Bohnen"],
     "Haferjoghurt": ["Haferghurt"],
     "Frischkäse": ["Exquisa"],
@@ -15,7 +15,11 @@ product_mapping = {
     "Zitronen": ["Zitronen", "SL"],
     "Karotten": ["Karotten"],
     "Tomaten": ["Pflaumentomaten"],
-    "Salat": ["Salate", "Bunte"]
+    "Salat": ["Salate", "Bunte"],
+    "Espresso": ["Cafet", "Espresso"],
+    "Gummibärchen": ["Haribo", "Pico", "Balla"],
+    "Buttercroissant": ["Buttercroissant", "croissant", "Butter"],
+    "Schinken-Käse-Croissant": ["Kaese", "Schin", "Crois"]
 }
 
 
