@@ -1,13 +1,18 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:storage_management_system/screens/home_screen/Items_cubit.dart';
 import 'package:storage_management_system/screens/home_screen/home_screen.dart';
 import 'package:storage_management_system/screens/home_screen/home_screen_cubit.dart';
+import 'package:storage_management_system/screens/setting/camera_cubit.dart';
 import 'package:storage_management_system/screens/setting/setting_screen.dart';
 import 'package:storage_management_system/screens/shopping_screen/shopping_cubit.dart';
 import 'package:storage_management_system/screens/shopping_screen/shopping_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final cameras = await availableCameras();
+  final firstcamera = cameras.first;
   runApp(
     MultiBlocProvider(
       providers: [
@@ -33,6 +38,9 @@ void main() {
         ),
         BlocProvider<TextFieldCubit>(
           create: (context) => TextFieldCubit(),
+        ),
+        BlocProvider(
+          create: (context) => CameraCubit(firstcamera),
         )
       ],
       child: const MyApp(),

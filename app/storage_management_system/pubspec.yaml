@@ -8,10 +8,12 @@ environment:
 
 dependencies:
   bloc: ^8.1.4
+  camera: ^0.11.0
   counter_button: ^1.0.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:
