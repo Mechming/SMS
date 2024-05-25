@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:storage_management_system/screens/home_screen/home_screen_cubit.dart';
 
@@ -16,5 +18,25 @@ class ItemsCubit extends Cubit<List<ModalBottomSheetState>> {
     emit(items);
 
     return updatedItem.counter1 <= updatedItem.counter2;
+  }
+
+  void addSpecialItem(String itemName, int amount) {
+    if (!state.any((item) => item.itemName == itemName)) {
+      addItem(ModalBottomSheetState(
+          itemName: itemName, counter1: amount, counter2: 0, ));
+    }
+  }
+
+  void addItemsFromJson(String jsonString) {
+    final items = jsonDecode(jsonString) as List<dynamic>;
+    for (var item in items) {
+      String name = item['name'];
+      int amount = item['amount'];
+      if (!state.any((existingItem) => existingItem.itemName == name)) {
+        addSpecialItem(name, amount);
+      } else {
+        final existingItem = state.firstWhere((element) => element.itemName == name);
+        updateItem(state.indexOf(existingItem), existingItem.copyWith(counter1: existingItem.counter1 + amount));
+    }
   }
 }
