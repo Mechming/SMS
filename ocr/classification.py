@@ -3,8 +3,8 @@ from difflib import SequenceMatcher
 import json
 
 product_mapping = {
-    "Joghurt": ["Alpro", "Jog", "Joghurt"],
-    "Nudeln": ["Deliz.Pas", "Pasta", "Deliz", "Simply"],
+    "Joghurt": ["Alpro", "Jog", "Joghurt", "JOGH"],
+    "Nudeln": ["Deliz.Pas", "Pasta", "Deliz", "Simply", "FUSILLI"],
     "Bohnen": ["Kidney-Bohnen", "Kidney", "Bohnen"],
     "Haferjoghurt": ["Haferghurt"],
     "Frischkäse": ["Exquisa"],
@@ -12,14 +12,25 @@ product_mapping = {
     "Haferdrink": ["Haferd"],
     "Äpfel": ["Äpfel", "Lose"],
     "Bananen": ["Bananen"],
-    "Zitronen": ["Zitronen", "SL"],
+    "Zitronen": ["Zitronen", "SL Zitronen"],
     "Karotten": ["Karotten"],
-    "Tomaten": ["Pflaumentomaten"],
+    "Tomaten": ["Pflaumentomaten", "RISPENTOMATE", "Tomate"],
     "Salat": ["Salate", "Bunte"],
     "Espresso": ["Cafet", "Espresso"],
     "Gummibärchen": ["Haribo", "Pico", "Balla"],
     "Buttercroissant": ["Buttercroissant", "croissant", "Butter"],
-    "Schinken-Käse-Croissant": ["Kaese", "Schin", "Crois"]
+    "Schinken-Käse-Croissant": ["Kaese", "Schin", "Crois"],
+    "Ingwer": ["INGWER"],
+    "Gouda": ["GOUDA", "GER."],
+    "Vollkorntoast": ["VOLLKORNTOAST", "TOAST"],
+    "Kartoffeln": ["KARTOFFELN"],
+    "Paprika": ["PAPRIKA"],
+    "Milch": ["ESL MILCH"],
+    "Reis": ["JA!", "BASMATI", "REIS", "BASMATI REIS"],
+    "Sonnenblumenöl": ["SONNENBLUMENOEL", "SONNENBLUME", "SONNE"],
+    "Kartoffelchips": ["KARTOFFELCHIPS", "CHIPS"],
+    "Toilettenpapier": ["RECYC.", "TOILETTENP"],
+    "Küchentücher": ["KUCHENTUECHER", "KUECHEN"]
 }
 
 
@@ -50,6 +61,7 @@ def get_products(text):
         if len(product_group) > 0:
             if len(product_group) != product_group.count(product_group[0]):
                 print("Error: mismatching product groups")
+                print(product_group)
             else:
                 result.append(product_group[0])
 
