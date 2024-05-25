@@ -49,12 +49,10 @@ def get_products(text):
             else:
                 result.append(product_group[0])
 
-    final_result = []
-    for item in result:
-        for pair in final_result:
-            if item not in pair:
-                final_result.append([item, 1])
-            else:
-                final_result[final_result.index(item)][1] += 1
-
-    print(final_result)
+    final_result = {}
+    for product in product_mapping:
+        amount = sum(x.count(product) for x in result)
+        if amount > 0:
+            final_result[product] = amount
+    output_data = json.dumps(final_result)
+    return output_data
