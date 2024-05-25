@@ -30,7 +30,27 @@ Widget modernListView() {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       const Text('available: '),
+                      IconButton(
+                        icon: const Icon(Icons.remove),
+                        onPressed: () {
+                          if (items[index].counter2 > 0) {
+                            context.read<ItemsCubit>().updateItem(
+                                index,
+                                items[index].copyWith(
+                                    counter2: items[index].counter2 - 1));
+                          }
+                        },
+                      ),
                       Text('${items[index].counter2}'),
+                      IconButton(
+                        icon: const Icon(Icons.add),
+                        onPressed: () {
+                          context.read<ItemsCubit>().updateItem(
+                              index,
+                              items[index].copyWith(
+                                  counter2: items[index].counter2 + 1));
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -64,7 +84,10 @@ Widget modernListView() {
                   subtitle: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('Target Value: '),
+                      const Text(
+                        'Target Value: ',
+                        style: TextStyle(fontSize: 12),
+                      ),
                       IconButton(
                         icon: const Icon(Icons.remove),
                         onPressed: () {
@@ -86,7 +109,10 @@ Widget modernListView() {
                                   counter1: items[index].counter1 + 1));
                         },
                       ),
-                      const Text('available: '),
+                      const Text(
+                        'available: ',
+                        style: TextStyle(fontSize: 12),
+                      ),
                       IconButton(
                         icon: const Icon(Icons.remove),
                         onPressed: () {
