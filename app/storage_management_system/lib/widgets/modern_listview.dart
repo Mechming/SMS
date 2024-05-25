@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:storage_management_system/screens/home_screen/Items_cubit.dart';
 import 'package:storage_management_system/screens/home_screen/home_screen_cubit.dart';
+import 'package:storage_management_system/screens/shopping_screen/shopping_cubit.dart';
 
 Widget modernListView() {
   return BlocBuilder<ItemsCubit, List<ModalBottomSheetState>>(
@@ -64,10 +65,18 @@ Widget modernListView() {
                       icon: const Icon(Icons.remove),
                       onPressed: () {
                         if (items[index].counter2 > 0) {
-                          context.read<ItemsCubit>().updateItem(
-                              index,
-                              items[index].copyWith(
-                                  counter2: items[index].counter2 - 1));
+                          bool shouldAdd = context
+                              .read<ItemsCubit>()
+                              .updateItem(
+                                  index,
+                                  items[index].copyWith(
+                                      counter2: items[index].counter2 - 1));
+
+                          shouldAdd
+                              ? context
+                                  .read<ShoppingCubit>()
+                                  .addItem(items[index].itemName)
+                              : null;
                         }
                       },
                     ),
