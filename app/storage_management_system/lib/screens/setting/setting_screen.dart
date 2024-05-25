@@ -42,7 +42,8 @@ class SettingsScreen extends StatelessWidget {
                   final multipartFile = http.MultipartFile.fromBytes(
                     'file',
                     imageBytes,
-                    filename: 'test.jpg', // Replace with your desired filename
+                    filename:
+                        'ShoppingBill.jpg', // Replace with your desired filename
                   );
 
                   request.files.add(multipartFile);
