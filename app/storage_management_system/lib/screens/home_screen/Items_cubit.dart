@@ -14,7 +14,11 @@ class ItemsCubit extends Cubit<List<ModalBottomSheetState>> {
 
   bool updateItem(int index, ModalBottomSheetState updatedItem) {
     final items = List<ModalBottomSheetState>.from(state);
-    items[index] = updatedItem;
+    if (updatedItem.counter2 == 0) {
+      items.removeAt(index);
+    } else {
+      items[index] = updatedItem;
+    }
     emit(items);
 
     return updatedItem.counter1 <= updatedItem.counter2;
@@ -23,7 +27,10 @@ class ItemsCubit extends Cubit<List<ModalBottomSheetState>> {
   void addSpecialItem(String itemName, int amount) {
     if (!state.any((item) => item.itemName == itemName)) {
       addItem(ModalBottomSheetState(
-          itemName: itemName, counter1: amount, counter2: 0, ));
+        itemName: itemName,
+        counter1: amount,
+        counter2: 0,
+      ));
     }
   }
 
@@ -35,8 +42,11 @@ class ItemsCubit extends Cubit<List<ModalBottomSheetState>> {
       if (!state.any((existingItem) => existingItem.itemName == name)) {
         addSpecialItem(name, amount);
       } else {
-        final existingItem = state.firstWhere((element) => element.itemName == name);
-        updateItem(state.indexOf(existingItem), existingItem.copyWith(counter1: existingItem.counter1 + amount));
+        final existingItem =
+            state.firstWhere((element) => element.itemName == name);
+        updateItem(state.indexOf(existingItem),
+            existingItem.copyWith(counter1: existingItem.counter1 + amount));
+      }
     }
   }
 }

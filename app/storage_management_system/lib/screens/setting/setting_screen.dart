@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -34,12 +33,17 @@ class SettingsScreen extends StatelessWidget {
               onPressed: () async {
                 List<int> imageBytes = state.imageBytes;
                 try {
-                  var response = await http.post(
-                    Uri.parse('Keine Url was da los'),
-                    body: {
-                      'image': base64Encode(imageBytes),
-                    },
+                  final uri = Uri.parse('http://192.168.137.1/upload');
+                  final request = http.MultipartRequest('POST', uri);
+
+                  final multipartFile = http.MultipartFile.fromBytes(
+                    'file',
+                    imageBytes,
+                    filename: 'test.jpg',
                   );
+                  final response = await request.send();
+
+                  request.files.add(multipartFile);
 
                   if (response.statusCode == 200) {
                     print('Image sent successfully!');
