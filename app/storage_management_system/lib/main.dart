@@ -69,6 +69,16 @@ class MyApp extends StatelessWidget {
                           : const Text('Home'),
               backgroundColor: Colors.green,
               centerTitle: true,
+              actions: [
+                if (state is SettingsPageState)
+                  IconButton(
+                    onPressed: () async {
+                      context.read<CameraCubit>().resetCamera();
+                    },
+                    icon: Icon(Icons.refresh),
+                  ),
+                SizedBox(width: 10),
+              ],
             ),
             body: state is HomePageState
                 ? const HomeScreen()

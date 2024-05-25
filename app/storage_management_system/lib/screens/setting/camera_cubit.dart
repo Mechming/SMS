@@ -26,6 +26,11 @@ class CameraCubit extends Cubit<CameraState> {
     }
   }
 
+  Future<void> resetCamera() async {
+    await _controller.dispose();
+    await _initializeController(_controller.description);
+  }
+
   @override
   Future<void> close() {
     _controller.dispose();
