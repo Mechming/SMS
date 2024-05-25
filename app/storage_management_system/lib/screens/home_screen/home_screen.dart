@@ -20,26 +20,26 @@ class HomeScreen extends StatelessWidget {
             builder: (ctx) => MultiBlocProvider(
               providers: [
                 BlocProvider<CounterCubit1>(
-                  key: Key('counter1'),
+                  key: const Key('counter1'),
                   create: (context) => CounterCubit1(0),
                 ),
                 BlocProvider<CounterCubit2>(
-                  key: Key('counter2'),
+                  key: const Key('counter2'),
                   create: (context) => CounterCubit2(0),
                 ),
                 BlocProvider<ModalBottomSheetCubit>(
                   create: (context) => ModalBottomSheetCubit(),
                 ),
               ],
-              child: Container(child: AddItemHome(), height: 600),
+              child: const SizedBox(height: 600, child: AddItemHome()),
             ),
           ).then((value) {
             context.read<CounterCubit1>().setCount(0);
             context.read<CounterCubit2>().setCount(0);
             context.read<TextFieldCubit>().setText('');
           }),
-          label: Text('Add Item'),
-          icon: Icon(Icons.add),
+          label: const Text('Add Item'),
+          icon: const Icon(Icons.add),
         ),
         body: modernListView(),
       );

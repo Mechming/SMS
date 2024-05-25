@@ -13,9 +13,9 @@ class ShoppingScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => showModalBottomSheet(
           context: context,
-          builder: (ctx) => Container(
+          builder: (ctx) => const SizedBox(
             height: 600,
-            child: const AddItemBottomSheet(),
+            child: AddItemBottomSheet(),
           ),
         ),
         label: const Text('Add Item'),
@@ -70,7 +70,7 @@ class ShoppingScreen extends StatelessWidget {
                                         .read<ShoppingCubit>()
                                         .decreaseItemQuantity(i);
                                   },
-                                  icon: Icon(Icons.remove),
+                                  icon: const Icon(Icons.remove),
                                 ),
                                 Text('${shoppingList[i].quantity}'),
                                 IconButton(
@@ -79,7 +79,7 @@ class ShoppingScreen extends StatelessWidget {
                                         .read<ShoppingCubit>()
                                         .increaseItemQuantity(i);
                                   },
-                                  icon: Icon(Icons.add),
+                                  icon: const Icon(Icons.add),
                                 ),
                               ],
                             ),

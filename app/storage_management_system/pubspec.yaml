@@ -8,8 +8,6 @@ environment:
 
 dependencies:
   bloc: ^8.1.4
-  cloud_firestore: ^4.17.4
-  firebase_core: ^2.31.1
   counter_button: ^1.0.1
   flutter:
     sdk: flutter

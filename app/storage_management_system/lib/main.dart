@@ -1,7 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:storage_management_system/backend/database.dart';
 import 'package:storage_management_system/screens/home_screen/Items_cubit.dart';
 import 'package:storage_management_system/screens/home_screen/home_screen.dart';
 import 'package:storage_management_system/screens/home_screen/home_screen_cubit.dart';
@@ -9,18 +7,7 @@ import 'package:storage_management_system/screens/setting/setting_screen.dart';
 import 'package:storage_management_system/screens/shopping_screen/shopping_cubit.dart';
 import 'package:storage_management_system/screens/shopping_screen/shopping_screen.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey:
-              'BDUEIljLKDGbTKGGcr1mIWHni6-xnEkomSmPwKYfRcE6HxGrtOPVRlEV5JfSJ6-cQkd6zcY52MuXbJYYsYiUPJE',
-          appId: '1:1032262691511:android:9c9bca4dda315d4fd8bb32',
-          messagingSenderId: '1032262691511',
-          projectId: 'sms-backend-a9c19'));
-
-  sebisDBTesting();
-
+void main() {
   runApp(
     MultiBlocProvider(
       providers: [
@@ -37,11 +24,11 @@ void main() async {
           create: (context) => ItemsCubit(),
         ),
         BlocProvider<CounterCubit1>(
-          key: Key('counter1'),
+          key: const Key('counter1'),
           create: (context) => CounterCubit1(0),
         ),
         BlocProvider<CounterCubit2>(
-          key: Key('counter2'),
+          key: const Key('counter2'),
           create: (context) => CounterCubit2(0),
         ),
         BlocProvider<TextFieldCubit>(
@@ -78,7 +65,7 @@ class MyApp extends StatelessWidget {
             body: state is HomePageState
                 ? const HomeScreen()
                 : state is ShoppingPageState
-                    ? ShoppingScreen()
+                    ? const ShoppingScreen()
                     : state is SettingsPageState
                         ? const SettingsScreen()
                         : Container(),

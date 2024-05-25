@@ -9,7 +9,7 @@ class AddItemBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -28,9 +28,9 @@ class AddItemBottomSheet extends StatelessWidget {
               );
             },
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
-            child: Text('Add Item'),
+            child: const Text('Add Item'),
             onPressed: () {
               context
                   .read<ShoppingCubit>()
