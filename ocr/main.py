@@ -11,9 +11,8 @@ WebApp.secret_key = "supersmshackerburgsystemtoll"
 
 def image_processing(img_path):
     img = cv2.imread(img_path)
-    img = cv2.medianBlur(img,5)
-    img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = cv2.medianBlur(img, 1)
+    #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     text = str(pytesseract.image_to_string(img, lang="deu", config='--oem 1 --psm 6'))
     print("Got Text from Image. Processing...")
     return text
@@ -37,6 +36,7 @@ def upload():
         image_text = image_processing(filename)
         json = get_products(image_text)
         print("done")
+        print(json)
         return json, 200
     print("File not uploaded")
     return jsonify({"error": "File not uploaded"}), 400
