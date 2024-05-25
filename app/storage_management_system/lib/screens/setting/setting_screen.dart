@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -52,9 +51,9 @@ class SettingsScreen extends StatelessWidget {
 
                   if (response.statusCode == 200) {
                     print('Image sent successfully!');
+                    final temp = context.read<ItemsCubit>();
                     final responsestr = await response.stream.bytesToString();
-                    final jsondecoded = jsonDecode(responsestr);
-                    context.read<ItemsCubit>().addItemsFromJson(jsondecoded);
+                    temp.addItemsFromJson(responsestr);
                   } else {
                     print(
                         'Failed to send image. Status code: ${response.statusCode}');
