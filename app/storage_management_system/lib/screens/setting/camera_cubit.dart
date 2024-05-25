@@ -24,8 +24,15 @@ class CameraCubit extends Cubit<CameraState> {
   Future<void> takePicture() async {
     if (state is CameraReady) {
       final image = await (state as CameraReady).controller.takePicture();
-      List<int> imageBytes = await File(image.path).readAsBytes();
-      emit(PictureTaken(image, imageBytes));
+      final jpegPath = image.path.replaceFirst(RegExp(r'\.[^\.]+$'), '.jpeg');
+      final jpegFile = File(jpegPath);
+      final imageFile = File(image.path);
+      await imageFile.copy(jpegPath);
+      List<int> imageBytes = await jpegFile.readAsBytes();
+      final xFile =
+          XFile(jpegFile.path); // Create an XFile from the path of the jpegFile
+      emit(PictureTaken(
+          xFile, imageBytes)); // Pass the XFile to the PictureTaken state
     }
   }
 

@@ -35,10 +35,10 @@ class ItemsCubit extends Cubit<List<ModalBottomSheetState>> {
   }
 
   void addItemsFromJson(String jsonString) {
-    final items = jsonDecode(jsonString) as List<dynamic>;
-    for (var item in items) {
-      String name = item['name'];
-      int amount = item['amount'];
+    final items = jsonDecode(jsonString) as Map<String, dynamic>;
+    for (var entry in items.entries) {
+      String name = entry.key;
+      int amount = entry.value;
       if (!state.any((existingItem) => existingItem.itemName == name)) {
         addSpecialItem(name, amount);
       } else {
